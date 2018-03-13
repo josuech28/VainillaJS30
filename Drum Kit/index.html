@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Test</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper-button">
+            <button class="btn btn-play">
+                <a href="#keys" data-title="Play Me">Play Me</a>
+            </button>
+        </div>
+    </header>
+    <!-- Keys -->
+    <div class="wrapper-keys">
+            <div class="keys" id="keys">
+                    <!-- Each Key -->
+                    <div data-key="65" class="key">
+                        <kbd>A</kbd>
+                        <span class="sound">think</span>
+                    </div>
+                    <!-- Each Key -->
+                    <div data-key="66" class="key">
+                        <kbd>B</kbd>
+                        <span class="sound">think</span>
+                    </div>
+                    <!-- Each Key -->
+                    <div data-key="67" class="key">
+                        <kbd>C</kbd>
+                        <span class="sound">think</span>
+                    </div>
+                    <!-- Each Key -->
+                    <div data-key="68" class="key">
+                        <kbd>D</kbd>
+                        <span class="sound">think</span>
+                    </div>
+                    <!-- Each Key -->
+                    <div data-key="69" class="key">
+                        <kbd>E</kbd>
+                        <span class="sound">think</span>
+                    </div>
+                    <!-- Each Key -->
+                    <div data-key="70" class="key">
+                        <kbd>F</kbd>
+                        <span class="sound">think</span>
+                    </div>      
+                </div>
+    </div>
+    
+
+    <!-- Audio -->
+    <audio data-key="65" src="sounds/audio-1.wav"></audio>
+    <audio data-key="66" src="sounds/audio-2.wav"></audio>
+    <audio data-key="67" src="sounds/audio-3.wav"></audio>
+    <audio data-key="68" src="sounds/audio-4.wav"></audio>
+    <audio data-key="69" src="sounds/audio-5.wav"></audio>
+    <audio data-key="70" src="sounds/audio-6.wav"></audio>
+
+    <script>
+        function playKey(event) {
+            const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
+            if(!audio) return; // stopped
+
+            audio.currentTime = 0; // rewind to the start
+            key.classList.add('playing');
+            audio.play();
+        }
+        function removeTransation(e) {
+            console.log(e.propertyName);
+            if(e.propertyName != 'transform') return; // do no taken 
+            this.classList.remove('playing');
+            console.log(this);
+        }
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend',removeTransation));
+        window.addEventListener('keydown',playKey);
+    </script>
+</body>
+</html>

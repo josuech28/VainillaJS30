@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cardio Array :P </title>
+</head>
+<body>
+    
+</body>
+    <script>
+        const players = [
+            {name: 'Mohamed Salah', team: 'Liverpool', goals: 28, pts: 56},
+            {name: 'Lionel Messi', team: 'Barcelona', goals: 25, pts: 50},
+            {name: 'Edinson Cavani', team: 'PSG', goals: 24, pts: 48},
+            {name: 'Ciro Immobile', team: 'Lazio', goals: 24, pts: 48},
+            {name: 'Harry Kane', team: 'Tottenham', goals: 24, pts: 48},
+            {name: 'Jonas', team: 'Benfica', goals: 31, pts: 46},
+            {name: 'Robert Lewandowski',team: 'Bayern Munich', goals: 23, pts: 46},
+            {name: 'Cristiano Ronaldo', team: 'Real Madrid', goals: 22, pts: 44}
+        ];
+        const people = [
+            'Acevedo Manríquez, María Mireya', 'Acevedo Mejía, Enrique', 'Acevedo Ruiz Carolina','Acosta Canto, Tomás José',
+            'Acosta Gámez, Celina', 'Aguilar Dorantes, Irma', 'Aguilar Lemus, María Ofelia', 'Aguilar Loranca, Marcela','Aguilar Pérez Fredy Francisco',
+            'Alarcón Licona, Salomón', 'Alarcón López, Gerardo Genaro', 'Alatriste Pérez, Hipólito', 'Alcántar Camacho, José Israel'
+        ];
+        // Array.prototype.filter
+        // 1. Filter list of players who has more than 24 goals
+        const topScores = players.filter((player) => player.goals >= 24);
+        console.log(topScores);
+
+        // 2. Player plus team
+        const fullDescription = players.map((player) => `${player.name} Team: ${player.team} Goals: ${player.goals}`);
+        console.log(fullDescription);
+
+        // 3. Order by goals
+        const orderPlayersByGoal = players.sort((firstPlayer,secondPlayer) => firstPlayer.goals < secondPlayer.goals ? 1 : -1);
+        console.log(orderPlayersByGoal);
+
+        //4 How many goals in totally
+        // one option is using normal for
+        const totalGoals = players.reduce((total,player) =>{
+            return total + player.goals;
+        }, 0);
+        console.log(totalGoals);
+
+        // Sort people name
+        const sortPeople = people.sort((lastOne, nextOne)=> {
+            // const [a, b] = lastOne.split...
+            const nameLastOne = lastOne.split(', ');
+            const nameNextOne = nextOne.split(', ');
+            return nameLastOne[1] > nameNextOne[1] ? 1: -1;
+        });
+        console.log(sortPeople);
+
+        // How many of each items
+        const data = [
+            'car','car','car','car','car','car','car','car','car','car','car','car','car','truck','truck','truck','truck','truck','truck','truck','truck','truck','truck','truck','aircraft','aircraft','aircraft'
+        ];
+
+        const countItems = data.reduce((obj,item) =>{
+            if(!obj[item]){
+                obj[item] = 0;
+            }
+                obj[item]++;
+                return obj;
+        },{});
+        console.log(countItems);
+    </script>
+</html>
